@@ -26,7 +26,7 @@ public class User {
         setId(id);
     }
 
-    private final void setId(Optional<Long> id)
+    public final void setId(Optional<Long> id)
     {
         if (id == null)
             throw new IllegalArgumentException("id is optional but cannot be null");

@@ -24,6 +24,9 @@ public class BlogRepository {
 
     public void save(Blog b) {
 
+        if (b==null)
+            throw new IllegalArgumentException("cannot save null blog");
+
         if (!b.getId().isPresent()) {
             b.setId(Optional.of(generateNonClashingId()));
         }
@@ -36,7 +39,7 @@ public class BlogRepository {
         long randomId;
         do {
             randomId = random.nextLong();
-        } while (randomId<=0 && !store.containsKey(randomId));
+        } while (randomId<=0 || store.containsKey(randomId));
         return randomId;
     }
 

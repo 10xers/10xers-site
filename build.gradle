@@ -2,6 +2,7 @@ group 'org.tenxers'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'application'
+apply plugin: 'jacoco'
 
 sourceCompatibility = 1.8
 

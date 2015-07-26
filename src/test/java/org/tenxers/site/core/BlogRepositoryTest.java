@@ -34,6 +34,7 @@ public class BlogRepositoryTest {
         assertTrue("result not found", result.isPresent());
         Blog res = result.get();
         assertEquals(legitId.getId().get(), res.getId().get()); // woah.
+        assertEquals(Optional.empty(), repository.getById(234243L));
     }
 
     @Test (timeout=100)
@@ -41,5 +42,11 @@ public class BlogRepositoryTest {
         assertFalse("no id before save", emptyId.getId().isPresent());
         repository.save(emptyId);
         assertTrue("id after save", emptyId.getId().isPresent());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCannotSaveNull()
+    {
+        repository.save(null);
     }
 }
