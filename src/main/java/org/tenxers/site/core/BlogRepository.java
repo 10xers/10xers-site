@@ -11,8 +11,8 @@ import java.util.Random;
  */
 public class BlogRepository {
 
-    private Map<Long, Blog> store = new HashMap<>();
-    private Random random = new Random(System.nanoTime());
+    private final Map<Long, Blog> store = new HashMap<>();
+    private final Random random = new Random(System.nanoTime());
 
     public Optional<Blog> getById(long blogId)
     {

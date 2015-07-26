@@ -2,7 +2,6 @@ package org.tenxers.site.core;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.rules.Timeout;
 
 import java.util.Optional;
 
@@ -18,11 +17,13 @@ public class BlogRepositoryTest {
     Blog emptyId;
     Blog legitId;
     User author;
+    Password samplePassword;
 
     @Before
     public void setUp() throws Exception {
+        samplePassword = PasswordMaker.make("ABC123");
         repository = new BlogRepository();
-        author = new User(Optional.of(99L), "Ed", "Lewis", "ABC123");
+        author = new User(Optional.of(99L), "Ed", "Lewis", samplePassword);
         emptyId = new Blog(Optional.empty(), "Lorem Ipsum", "Lorem ipsum lorem ipsum", author);
         legitId = new Blog(Optional.of(123L), "Lorem Ipsum #2", "Ipsuim lorem lorem", author);
         repository.save(legitId);

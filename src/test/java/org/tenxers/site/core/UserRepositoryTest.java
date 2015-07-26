@@ -20,8 +20,8 @@ public class UserRepositoryTest {
     @Before
     public void setUp() throws Exception {
         repository = new UserRepository();
-        legitId = new User(Optional.of(10L), "Ed", "Lewis", "ABC123");
-        newUser = new User(Optional.empty(), "Timmy", "Turtle", "POTATO");
+        legitId = new User(Optional.of(10L), "Ed", "Lewis", PasswordMaker.make("ABC123"));
+        newUser = new User(Optional.empty(), "Timmy", "Turtle", PasswordMaker.make("POTATO"));
         repository.save(legitId);
     }
 

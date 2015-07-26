@@ -14,13 +14,14 @@ public class BlogTest {
 
     private static final String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ante turpis, sollicitudin cursus ex suscipit sit amet. Donec volutpat consequat sapien, in imperdiet lacus ultricies eget. Mauris id aliquet nisl, in ultricies dui. Duis tristique, ex non lacinia lobortis, odio tellus aliquet nibh, ac cursus ligula mauris non justo. Etiam id hendrerit justo. Curabitur vehicula est at posuere vehicula. Mauris in massa at nibh condimentum efficitur sit amet eget nulla. Aenean nisi erat, congue ut sollicitudin non, rutrum in mi.";
     private static final String title = "Lorem ipsum dolor sit amet";
+    private static final Password legitPassword = PasswordMaker.make("ABC123");
 
-    private static final User legitAuthor = new User(Optional.of(22L), "Ed", "Lewis", "ABC123");
+    private static final User legitAuthor = new User(Optional.of(22L), "Ed", "Lewis", legitPassword);
 
     @Test(expected = IllegalArgumentException.class)
     public void testAuthorHasValidId()
     {
-        new Blog(Optional.empty(), title, text, new User(Optional.empty(), "Ed", "Lewis", "ABC123"));
+        new Blog(Optional.empty(), title, text, new User(Optional.empty(), "Ed", "Lewis", legitPassword));
     }
 
     @Test(expected = IllegalArgumentException.class)

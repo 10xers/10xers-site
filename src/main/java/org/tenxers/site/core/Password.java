@@ -6,7 +6,7 @@ package org.tenxers.site.core;
  */
 public class Password {
 
-    public static enum HashType {
+    public enum HashType {
         SHA_256
     }
 
@@ -20,14 +20,14 @@ public class Password {
         setType(hashType);
     }
 
-    public final void setType(HashType type) {
+    private void setType(HashType type) {
         if (type==null)
             throw new IllegalArgumentException("Hash type cannot be null");
 
         this.type = type;
     }
 
-    public final void setHash(String hash) {
+    private void setHash(String hash) {
         if (hash==null)
             throw new IllegalArgumentException("Hash cannot be null");
 

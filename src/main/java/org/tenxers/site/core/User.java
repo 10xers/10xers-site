@@ -15,14 +15,14 @@ public class User {
 
     private String firstName;
     private String secondName;
-    private String passwordHash;
+    private Password password;
 
     private Optional<Long> id;
 
-    public User(Optional<Long> id, String firstName, String secondName, String passwordHash) {
+    public User(Optional<Long> id, String firstName, String secondName, Password password) {
         setFirstName(firstName);
         setSecondName(secondName);
-        setPasswordHash(passwordHash);
+        setPassword(password);
         setId(id);
     }
 
@@ -37,15 +37,12 @@ public class User {
         this.id = id;
     }
 
-    private final void setPasswordHash(String passwordHash)
+    private final void setPassword(Password password)
     {
-        if (passwordHash == null)
-            throw new IllegalArgumentException("password hash cannot be null!");
+        if (password == null)
+            throw new IllegalArgumentException("password cannot be null!");
 
-        if (!isNumbersAndLettersOnly(passwordHash))
-            throw new IllegalArgumentException("password hash can only be letters and numbers");
-
-        this.passwordHash = passwordHash;
+        this.password = password;
     }
 
     private final void setSecondName(String secondName)
@@ -83,8 +80,8 @@ public class User {
         return secondName;
     }
 
-    public String getPasswordHash() {
-        return this.passwordHash;
+    public Password getPassword() {
+        return this.password;
     }
 
     public Optional<Long> getId() {
@@ -94,12 +91,6 @@ public class User {
     private static boolean isLettersOnly(String testString)
     {
         Matcher m = lettersOnly.matcher(testString);
-        return m.matches();
-    }
-
-    private static boolean isNumbersAndLettersOnly(String testString)
-    {
-        Matcher m = numbersAndLettersOnly.matcher(testString);
         return m.matches();
     }
 

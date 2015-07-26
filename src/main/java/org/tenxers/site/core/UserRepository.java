@@ -11,8 +11,8 @@ import java.util.Random;
  */
 public class UserRepository {
 
-    private Map<Long, User> store = new HashMap<>();
-    private Random random = new Random(System.nanoTime());
+    private final Map<Long, User> store = new HashMap<>();
+    private final Random random = new Random(System.nanoTime());
 
     public void save(User user) {
         if (user == null)
