@@ -66,6 +66,15 @@ public class BlogTest {
     }
 
     @Test
+    public void testIdIsSet()
+    {
+        Blog b = new Blog(Optional.empty(), title, text, legitAuthor);
+        assertFalse(b.getId().isPresent());
+        b.setId(Optional.of(99L));
+        assertEquals(99L,b.getId().get().longValue());
+    }
+
+    @Test
     public void testSensibleConstructor()
     {
         Blog b = new Blog(Optional.empty(), title, text, legitAuthor);

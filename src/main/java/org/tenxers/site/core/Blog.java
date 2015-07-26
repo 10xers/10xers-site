@@ -50,7 +50,7 @@ public class Blog {
         this.title = title;
     }
 
-    private final void setId(Optional<Long> id)
+    public final void setId(Optional<Long> id)
     {
         if (id == null)
             throw new IllegalArgumentException("id cannot be null");
@@ -64,7 +64,6 @@ public class Blog {
     public Optional<Long> getId() {
         return this.id;
     }
-
 
     public String getTitle() {
         return title;
