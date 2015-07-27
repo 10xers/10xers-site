@@ -17,7 +17,7 @@ buildscript {
     }
 }
 
-mainClassName  = 'org.tenxers.site.Main'
+mainClassName  = 'org.tenxers.site.Application'
 
 repositories {
     mavenCentral()
