@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <span th:if="${loginError}">Invalid username or password.</span>
+    <form action="/login" method="post">
+        <p>Username:&nbsp;<input type="text" name="username" /> </p>
+        <p>Password:&nbsp;<input type="password" name="password" /> </p>
+        <p><button type="submit">Submit!</button></p>
+    </form>
+</body>
+</html>

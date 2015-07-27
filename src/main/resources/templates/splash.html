@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1 th:if="${ loggedInPerson != null }" th:text="${'Hey ' + loggedInPerson.firstName + ' ' + loggedInPerson.secondName}"></h1>
+    <br/>
+    <h1><a href="/blog">blog</a></h1>
+    <br/>
+    <h1><a href="/login">login</a></h1>
+    <br/>
+</body>
+</html>

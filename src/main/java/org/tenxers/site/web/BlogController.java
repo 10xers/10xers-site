@@ -1,22 +1,20 @@
 package org.tenxers.site.web;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * site / Ed
- * 27/07/2015 17:57
+ * 27/07/2015 18:38
  */
 @Controller
-public class IndexPageController {
+public class BlogController {
 
-    @RequestMapping("/")
-    public String index() {
-        return "index";
+    @RequestMapping(value="/blog", method = RequestMethod.GET)
+    public String blog()
+    {
+        return "blog";
     }
-
 
 }
