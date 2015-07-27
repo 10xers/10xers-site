@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class IndexPageController {
 
     @RequestMapping("/")
-    public String index(@RequestParam(value="name", required=false, defaultValue = "world") String name, Model model) {
-        model.addAttribute("name", name);
+    public String index() {
         return "index";
     }
 
