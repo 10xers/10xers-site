@@ -1,4 +1,4 @@
-package org.tenxers.site.core;
+package org.tenxers.site.core.models;
 
 import java.util.Optional;
 

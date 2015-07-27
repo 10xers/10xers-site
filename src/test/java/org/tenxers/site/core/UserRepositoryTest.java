@@ -2,6 +2,8 @@ package org.tenxers.site.core;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.tenxers.site.core.models.User;
+import org.tenxers.site.core.repositories.UserRepository;
 
 import java.util.Optional;
 

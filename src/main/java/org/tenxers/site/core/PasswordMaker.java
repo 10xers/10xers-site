@@ -1,5 +1,7 @@
 package org.tenxers.site.core;
 
+import org.tenxers.site.core.models.Password;
+
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

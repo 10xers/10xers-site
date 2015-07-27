@@ -1,4 +1,6 @@
-package org.tenxers.site.core;
+package org.tenxers.site.core.repositories;
+
+import org.tenxers.site.core.models.User;
 
 import java.util.HashMap;
 import java.util.Map;

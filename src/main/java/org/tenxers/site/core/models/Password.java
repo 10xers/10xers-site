@@ -1,4 +1,4 @@
-package org.tenxers.site.core;
+package org.tenxers.site.core.models;
 
 /**
  * site / Ed

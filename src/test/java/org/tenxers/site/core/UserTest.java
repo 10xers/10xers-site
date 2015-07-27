@@ -1,6 +1,8 @@
 package org.tenxers.site.core;
 
 import org.junit.Test;
+import org.tenxers.site.core.models.Password;
+import org.tenxers.site.core.models.User;
 
 import java.util.Optional;
 

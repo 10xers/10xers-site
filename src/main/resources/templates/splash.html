@@ -1,15 +1,27 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Cult of the 9th lantern</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- Bootstrap -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <h1 th:if="${ loggedInPerson != null }" th:text="${'Hey ' + loggedInPerson.firstName + ' ' + loggedInPerson.secondName}"></h1>
-    <br/>
-    <h1><a href="/blog">blog</a></h1>
-    <br/>
-    <h1><a href="/login">login</a></h1>
-    <br/>
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 th:if="${ loggedInPerson != null }" th:text="${'Hey ' + loggedInPerson.firstName + ' ' + loggedInPerson.secondName}">(Hey user)</h1>
+            <h1><a th:if="${ loggedInPerson == null }" href="/login">Login</a></h1>
+        </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/vendor/jquery/jquery-1.11.3.min.js" />
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/vendor/bootstrap/js/bootstrap.min.js" />
 </body>
 </html>

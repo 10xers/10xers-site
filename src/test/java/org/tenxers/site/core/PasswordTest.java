@@ -2,6 +2,7 @@ package org.tenxers.site.core;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.tenxers.site.core.models.Password;
 
 import static org.junit.Assert.*;
 
