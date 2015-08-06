@@ -2,10 +2,8 @@ package org.tenxers.site.core.repositories;
 
 import org.tenxers.site.core.models.User;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * site / Ed
@@ -15,6 +13,13 @@ public class UserRepository {
 
     private final Map<Long, User> store = new HashMap<>();
     private final Random random = new Random(System.nanoTime());
+
+    public List<User> getByUsername(String username) {
+       return store.values()
+               .parallelStream()
+               .filter( user -> user.getUsername().equals(username) )
+               .collect(Collectors.toList());
+    }
 
     public void save(User user) {
         if (user == null)

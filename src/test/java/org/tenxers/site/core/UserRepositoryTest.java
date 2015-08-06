@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.tenxers.site.core.models.User;
 import org.tenxers.site.core.repositories.UserRepository;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -22,8 +24,8 @@ public class UserRepositoryTest {
     @Before
     public void setUp() throws Exception {
         repository = new UserRepository();
-        legitId = new User(Optional.of(10L), "Ed", "Lewis", PasswordMaker.make("ABC123"));
-        newUser = new User(Optional.empty(), "Timmy", "Turtle", PasswordMaker.make("POTATO"));
+        legitId = new User(Optional.of(10L), "edlewis", PasswordMaker.make("ABC123"), "Ed", "Lewis");
+        newUser = new User(Optional.empty(), "timmyturtle", PasswordMaker.make("POTATO"), "Timmy", "Turtle");
         repository.save(legitId);
     }
 
@@ -47,5 +49,15 @@ public class UserRepositoryTest {
         assertFalse(newUser.hasUserId());
         repository.save(newUser);
         assertTrue(newUser.hasUserId());
+    }
+
+    @Test
+    public void testGetByUsername() throws Exception {
+        assertEquals(0, repository.getByUsername("tasedfasdfas").size());
+        List<User> users = repository.getByUsername("edlewis");
+        assertEquals(1, users.size());
+        assertEquals(10L, (long)users.get(0).getId().get());
+
+        assertNotNull(repository.getByUsername(null));
     }
 }

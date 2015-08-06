@@ -16,10 +16,12 @@ public class User {
     private String firstName;
     private String secondName;
     private Password password;
+    private String username;
 
     private Optional<Long> id;
 
-    public User(Optional<Long> id, String firstName, String secondName, Password password) {
+    public User(Optional<Long> id, String username, Password password, String firstName, String secondName) {
+        setUsername(username);
         setFirstName(firstName);
         setSecondName(secondName);
         setPassword(password);
@@ -67,6 +69,17 @@ public class User {
         this.firstName = firstName;
     }
 
+    private void setUsername(String username) {
+
+        if (username==null)
+             throw new IllegalArgumentException("Username cannot be null");
+
+        if (username.trim().isEmpty())
+            throw new IllegalArgumentException("Username cannot be empty");
+
+        this.username = username;
+    }
+
     public boolean hasUserId()
     {
         return this.getId().isPresent();
@@ -87,6 +100,13 @@ public class User {
     public Optional<Long> getId() {
         return this.id;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+
+
 
     private static boolean isLettersOnly(String testString)
     {

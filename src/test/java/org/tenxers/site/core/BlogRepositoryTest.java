@@ -27,7 +27,7 @@ public class BlogRepositoryTest {
     public void setUp() throws Exception {
         samplePassword = PasswordMaker.make("ABC123");
         repository = new BlogRepository();
-        author = new User(Optional.of(99L), "Ed", "Lewis", samplePassword);
+        author = new User(Optional.of(99L), "edlewis", samplePassword, "Ed", "Lewis");
         emptyId = new Blog(Optional.empty(), "Lorem Ipsum", "Lorem ipsum lorem ipsum", author);
         legitId = new Blog(Optional.of(123L), "Lorem Ipsum #2", "Ipsuim lorem lorem", author);
         repository.save(legitId);

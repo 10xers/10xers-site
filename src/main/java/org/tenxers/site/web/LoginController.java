@@ -7,9 +7,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.tenxers.site.core.PasswordMaker;
 import org.tenxers.site.core.models.User;
+import org.tenxers.site.core.repositories.UserRepository;
 
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
+
+import static org.tenxers.site.web.helpers.Helpers.addLoginToSession;
+import static org.tenxers.site.web.helpers.Helpers.tryLogin;
 
 /**
  * site / Ed
@@ -26,11 +30,12 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPost(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
 
-        if ("user".equals(username) && "password".equals(password))
+        Optional<User> user = tryLogin(username, password, new UserRepository()); // TODO unstub me
+
+        if (user.isPresent())
         {
-            User xyz = new User(Optional.of(123L), "Ed", "Lewis", PasswordMaker.make("password"));
-            session.setAttribute("loggedInUser", xyz);
-            return "redirect:/";
+            addLoginToSession(session, user.get());
+            return "redirect:/blog/admin";
         } else {
             model.addAttribute("loginError", true);
             return "login";
