@@ -1,6 +1,11 @@
 package org.tenxers.site.web.helpers;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.tenxers.site.Application;
 import org.tenxers.site.core.PasswordMaker;
 import org.tenxers.site.core.models.Password;
 import org.tenxers.site.core.models.User;
@@ -19,7 +24,12 @@ import static org.tenxers.site.web.helpers.Helpers.isLoggedIn;
  * site / Ed
  * 06/08/2015 18:42
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = Application.class)
 public class HelpersTest {
+
+    @Autowired
+    UserRepository userRepository;
 
     @Test (expected = IllegalStateException.class)
     public void testIsLoggedInWrongObject() throws Exception {
@@ -42,7 +52,7 @@ public class HelpersTest {
         verify(badSessionEmpty, times(1)).getAttribute("loggedInUser");
 
         HttpSession goodSesssion = mock(HttpSession.class);
-        when(goodSesssion.getAttribute("loggedInUser")).thenReturn(new User(Optional.of(123L), "edlewis", PasswordMaker.make("abcd"), "Ed", "Lewis"));
+        when(goodSesssion.getAttribute("loggedInUser")).thenReturn(new User("edlewis", PasswordMaker.make("abcd"), "Ed", "Lewis"));
         assertTrue(isLoggedIn(goodSesssion));
         verify(goodSesssion, times(1)).getAttribute("loggedInUser");
 
@@ -51,9 +61,9 @@ public class HelpersTest {
 
     @Test
     public void testTryLogin() throws Exception {
-        UserRepository m = new UserRepository();
+        UserRepository m = userRepository;
         Password valid = PasswordMaker.make("abc");
-        User permitted = new User(Optional.empty(), "edlewis", valid, "Ed", "Lewis");
+        User permitted = new User("edlewis", valid, "Ed", "Lewis");
         m.save(permitted);
 
         assertEquals(Optional.empty(), Helpers.tryLogin("EdLewis", "999", m)); // invalid password
@@ -61,7 +71,7 @@ public class HelpersTest {
         Optional<User> loggedIn = Helpers.tryLogin("edlewis", valid.getHash(), m); // ok
 
         assertTrue(loggedIn.isPresent());
-        assertEquals(permitted.getId().get(), loggedIn.get().getId().get());
+        assertEquals(permitted.getId(), loggedIn.get().getId());
 
         assertEquals(Optional.empty(), Helpers.tryLogin("asdfasdfasdfasdf", "abc", m)); // ok
     }
@@ -69,7 +79,7 @@ public class HelpersTest {
     @Test
     public void testAddLoginToSession() throws Exception {
         HttpSession session = mock(HttpSession.class);
-        User u =  new User(Optional.empty(), "edlewis", PasswordMaker.make("abc"), "Ed", "Lewis");
+        User u =  new User("edlewis", PasswordMaker.make("abc"), "Ed", "Lewis");
         addLoginToSession(session, u);
         verify(session, times(1)).setAttribute("loggedInUser", u);
 

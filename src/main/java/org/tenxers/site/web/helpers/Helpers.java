@@ -35,7 +35,7 @@ public class Helpers {
 
     public static Optional<User> tryLogin(String username, String password, UserRepository users)
     {
-        List<User> matches = users.getByUsername(username);
+        List<User> matches = users.findByUsername(username);
 
         if (matches.isEmpty())
             return Optional.empty();

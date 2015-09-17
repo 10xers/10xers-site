@@ -1,5 +1,6 @@
 package org.tenxers.site.core.models;
 
+import javax.persistence.*;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,35 +9,30 @@ import java.util.regex.Pattern;
  * site / Ed
  * 26/07/2015 01:40
  */
+@Entity
 public class User {
 
     private static final Pattern lettersOnly = Pattern.compile("^[a-z]+$", Pattern.CASE_INSENSITIVE);
-    private static final Pattern numbersAndLettersOnly = Pattern.compile("^[a-z0-9]+$", Pattern.CASE_INSENSITIVE);
 
     private String firstName;
     private String secondName;
+
+    @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name="password", referencedColumnName="id",nullable=false)
     private Password password;
     private String username;
 
-    private Optional<Long> id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-    public User(Optional<Long> id, String username, Password password, String firstName, String secondName) {
+    protected User() {}
+
+    public User(String username, Password password, String firstName, String secondName) {
         setUsername(username);
         setFirstName(firstName);
         setSecondName(secondName);
         setPassword(password);
-        setId(id);
-    }
-
-    public final void setId(Optional<Long> id)
-    {
-        if (id == null)
-            throw new IllegalArgumentException("id is optional but cannot be null");
-
-        if (id.isPresent() && id.get() <= 0)
-           throw new IllegalArgumentException("ID must be greater than 0");
-
-        this.id = id;
     }
 
     private final void setPassword(Password password)
@@ -80,11 +76,6 @@ public class User {
         this.username = username;
     }
 
-    public boolean hasUserId()
-    {
-        return this.getId().isPresent();
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -97,16 +88,13 @@ public class User {
         return this.password;
     }
 
-    public Optional<Long> getId() {
+    public long getId() {
         return this.id;
     }
 
     public String getUsername() {
         return username;
     }
-
-
-
 
     private static boolean isLettersOnly(String testString)
     {

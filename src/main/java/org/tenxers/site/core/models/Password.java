@@ -1,18 +1,26 @@
 package org.tenxers.site.core.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * site / Ed
  * 26/07/2015 17:20
  */
+@Entity
 public class Password {
 
     public enum HashType {
         SHA_256
     }
 
+    @Id
+    private long id;
     private String salt;
     private String hash;
     private HashType type;
+
+    protected Password() {}
 
     public Password(String salt, String hash, HashType hashType) {
         setSalt(salt);

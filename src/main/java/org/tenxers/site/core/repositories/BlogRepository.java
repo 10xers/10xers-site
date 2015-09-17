@@ -2,47 +2,18 @@ package org.tenxers.site.core.repositories;
 
 import org.tenxers.site.core.models.Blog;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
+
+import org.springframework.data.repository.CrudRepository;
 
 /**
  * site / Ed
  * 26/07/2015 03:35
  */
-public class BlogRepository {
+public interface BlogRepository extends CrudRepository<Blog, Long> {
 
-    private final Map<Long, Blog> store = new HashMap<>();
-    private final Random random = new Random(System.nanoTime());
 
-    public Optional<Blog> getById(long blogId)
-    {
-        if(store.containsKey(blogId))
-            return Optional.of(store.get(blogId));
-        else
-            return Optional.empty();
-    }
-
-    public void save(Blog b) {
-
-        if (b==null)
-            throw new IllegalArgumentException("cannot save null blog");
-
-        if (!b.getId().isPresent()) {
-            b.setId(Optional.of(generateNonClashingId()));
-        }
-
-        store.put(b.getId().get(), b);
-    }
-
-    private long generateNonClashingId()
-    {
-        long randomId;
-        do {
-            randomId = random.nextLong();
-        } while (randomId<=0 || store.containsKey(randomId));
-        return randomId;
-    }
+    List<Blog> findById(long blogId);
+    Blog save(Blog b);
 
 }

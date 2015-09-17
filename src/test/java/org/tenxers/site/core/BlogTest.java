@@ -1,6 +1,10 @@
 package org.tenxers.site.core;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.tenxers.site.Application;
 import org.tenxers.site.core.models.Blog;
 import org.tenxers.site.core.models.Password;
 import org.tenxers.site.core.models.User;
@@ -20,70 +24,43 @@ public class BlogTest {
     private static final Password legitPassword = PasswordMaker.make("ABC123");
     private static final String username = "edlewis";
 
-    private static final User legitAuthor = new User(Optional.of(22L), username, legitPassword, "Ed", "Lewis");
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testAuthorHasValidId()
-    {
-        new Blog(Optional.empty(), title, text, new User(Optional.empty(), username, legitPassword, "Ed", "Lewis"));
-    }
+    private static final User legitAuthor = new User(username, legitPassword, "Ed", "Lewis");
 
     @Test(expected = IllegalArgumentException.class)
     public void testAuthorCannotBeNull()
     {
-        new Blog(Optional.empty(), title, text, null);
+        new Blog(title, text, null);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testTextCannotBeEmpty()
     {
-        new Blog(Optional.empty(), title, "", legitAuthor);
+        new Blog(title, "", legitAuthor);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testTextCannotBeNull()
     {
-        new Blog(Optional.empty(), title, null, legitAuthor);
+        new Blog(title, null, legitAuthor);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testTitleLengthGreaterThanZero()
     {
-        new Blog(Optional.empty(), "", text, legitAuthor);
+        new Blog("", text, legitAuthor);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testTitleCannotBeNull()
     {
-        new Blog(Optional.empty(), null, text, legitAuthor);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testIdMustBeGreaterThanZero()
-    {
-        new Blog(Optional.of(0L), title, text, legitAuthor);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testIdCannotBeNull()
-    {
-        new Blog(null, title, text, legitAuthor);
-    }
-
-    @Test
-    public void testIdIsSet()
-    {
-        Blog b = new Blog(Optional.empty(), title, text, legitAuthor);
-        assertFalse(b.getId().isPresent());
-        b.setId(Optional.of(99L));
-        assertEquals(99L,b.getId().get().longValue());
+        new Blog(null, text, legitAuthor);
     }
 
     @Test
     public void testSensibleConstructor()
     {
-        Blog b = new Blog(Optional.empty(), title, text, legitAuthor);
-        assertEquals(Optional.empty(), b.getId());
+        Blog b = new Blog(title, text, legitAuthor);
+        assertEquals(0, b.getId());
         assertEquals(title, b.getTitle());
         assertEquals(text, b.getText());
         assertEquals(legitAuthor, b.getAuthor());

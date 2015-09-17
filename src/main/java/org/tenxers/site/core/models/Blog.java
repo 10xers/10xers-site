@@ -1,20 +1,28 @@
 package org.tenxers.site.core.models;
 
+import javax.persistence.*;
 import java.util.Optional;
 
 /**
  * site / Ed
  * 26/07/2015 01:40
  */
+@Entity
 public class Blog {
 
-    private Optional<Long> id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     private String title;
     private String text;
+    @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name="author", referencedColumnName="id",nullable=false)
     private User author;
 
-    public Blog(Optional<Long> id, String title, String text, User author) {
-        setId(id);
+    protected Blog() {}
+
+    public Blog( String title, String text, User author) {
         setTitle(title);
         setText(text);
         setAuthor(author);
@@ -24,9 +32,6 @@ public class Blog {
     {
         if (author==null)
             throw new IllegalArgumentException("author cannot be null");
-
-        if (!author.hasUserId())
-            throw new IllegalArgumentException("author must have a user id");
 
         this.author = author;
     }
@@ -50,18 +55,7 @@ public class Blog {
         this.title = title;
     }
 
-    public final void setId(Optional<Long> id)
-    {
-        if (id == null)
-            throw new IllegalArgumentException("id cannot be null");
-
-        if (id.isPresent() && id.get() <= 0)
-            throw new IllegalArgumentException("id if present must be greater than zero");
-
-        this.id = id;
-    }
-
-    public Optional<Long> getId() {
+    public long getId() {
         return this.id;
     }
 

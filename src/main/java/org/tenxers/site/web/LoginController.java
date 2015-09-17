@@ -1,5 +1,6 @@
 package org.tenxers.site.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,9 @@ import static org.tenxers.site.web.helpers.Helpers.tryLogin;
 @Controller
 public class LoginController {
 
+    @Autowired
+    UserRepository userRepository;
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         return "login";
@@ -30,7 +34,7 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPost(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
 
-        Optional<User> user = tryLogin(username, password, new UserRepository()); // TODO unstub me
+        Optional<User> user = tryLogin(username, password, userRepository); // TODO unstub me
 
         if (user.isPresent())
         {

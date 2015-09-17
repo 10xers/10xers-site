@@ -1,5 +1,6 @@
 package org.tenxers.site.core.repositories;
 
+import org.springframework.data.repository.CrudRepository;
 import org.tenxers.site.core.models.User;
 
 import java.util.*;
@@ -9,38 +10,12 @@ import java.util.stream.Collectors;
  * site / Ed
  * 26/07/2015 16:52
  */
-public class UserRepository {
+public interface UserRepository extends CrudRepository<User, Long> {
 
-    private final Map<Long, User> store = new HashMap<>();
-    private final Random random = new Random(System.nanoTime());
+    List<User> findByUsername(String username);
 
-    public List<User> getByUsername(String username) {
-       return store.values()
-               .parallelStream()
-               .filter( user -> user.getUsername().equals(username) )
-               .collect(Collectors.toList());
-    }
+    User save(User user);
 
-    public void save(User user) {
-        if (user == null)
-            throw new IllegalArgumentException("Cannot save null");
+    User findById(long userId);
 
-        if (!user.hasUserId())
-            user.setId(Optional.of(generateUniqueUserId()));
-
-        store.put(user.getId().get(), user);
-    }
-
-    public Optional<User> getById(long id) {
-        return Optional.ofNullable(store.get(id));
-    }
-
-    private long generateUniqueUserId() {
-        long newId;
-        do {
-            newId = random.nextLong();
-        } while (newId <= 0 || store.containsKey(newId));
-
-        return newId;
-    }
 }
