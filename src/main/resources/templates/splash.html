@@ -9,7 +9,7 @@
     <title>Cult of the 9th lantern</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <!-- Bootstrap -->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
 </head>
 <body>
 
@@ -20,8 +20,8 @@
         </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="/vendor/jquery/jquery-1.11.3.min.js" />
+    <script src="/vendor/jquery/jquery-1.11.3.min.js" th:src="@{vendor/jquery/jquery-1.11.3.min.js}" />
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="/vendor/bootstrap/js/bootstrap.min.js" />
+    <script src="/vendor/bootstrap/js/bootstrap.min.js" th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"/>
 </body>
 </html>
