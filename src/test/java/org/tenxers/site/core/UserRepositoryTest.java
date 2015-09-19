@@ -3,6 +3,7 @@ package org.tenxers.site.core;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -10,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.tenxers.site.Application;
 import org.tenxers.site.core.models.User;
 import org.tenxers.site.core.repositories.UserRepository;
+import testcats.SlowTests;
 
 import java.util.List;
 
@@ -21,6 +23,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
+@Category(SlowTests.class)
 @Ignore
 public class UserRepositoryTest {
 

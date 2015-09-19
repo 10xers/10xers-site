@@ -38,6 +38,20 @@ jar {
     version =  '0.1.0'
 }
 
+test {
+    useJUnit {
+        includeCategories 'testcats.FastTests'
+        excludeCategories 'testcats.SlowTests'
+    }
+}
+
+task integrationTest(type: Test) {
+    useJUnit {
+        excludeCategories 'testcats.FastTests'
+        includeCategories 'testcats.SlowTests'
+    }
+}
+
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }

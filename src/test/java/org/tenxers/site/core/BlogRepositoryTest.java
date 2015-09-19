@@ -3,6 +3,7 @@ package org.tenxers.site.core;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -12,10 +13,12 @@ import org.tenxers.site.core.models.Blog;
 import org.tenxers.site.core.models.Password;
 import org.tenxers.site.core.models.User;
 import org.tenxers.site.core.repositories.BlogRepository;
+import testcats.SlowTests;
 
 import java.util.List;
 
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 
 /**
  * site / Ed
@@ -23,7 +26,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-@Ignore
+@Category(SlowTests.class)
 public class BlogRepositoryTest {
 
     @Autowired
@@ -43,7 +46,7 @@ public class BlogRepositoryTest {
         legitId = new Blog("Lorem Ipsum #2", "Ipsuim lorem lorem", author);
         repository.save(legitId);
     }
-
+/*
     @Test
     public void testGetById() throws Exception {
         List<Blog> result = repository.findById(legitId.getId());
@@ -56,7 +59,7 @@ public class BlogRepositoryTest {
     public void testSave() throws Exception {
         repository.save(emptyId);
     }
-
+*/
     @Test(expected = IllegalArgumentException.class)
     public void testCannotSaveNull()
     {

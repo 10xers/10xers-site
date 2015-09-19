@@ -1,8 +1,10 @@
 package org.tenxers.site.core;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.tenxers.site.core.models.Password;
 import org.tenxers.site.core.models.User;
+import testcats.FastTests;
 
 import java.util.Optional;
 
@@ -12,6 +14,7 @@ import static org.junit.Assert.*;
  * site / Ed
  * 26/07/2015 01:41
  */
+@Category(FastTests.class)
 public class UserTest {
 
     private static final Password legitPassword = PasswordMaker.make("OK");

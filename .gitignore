@@ -27,3 +27,5 @@ gradlew.bat
 gradle
 site.iml
 
+/.nb-gradle/
+.nb-gradle-properties

@@ -1,7 +1,9 @@
 package org.tenxers.site.core;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.tenxers.site.core.models.Password;
+import testcats.FastTests;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.ByteArrayOutputStream;
@@ -14,6 +16,7 @@ import static org.junit.Assert.*;
  * site / Ed
  * 26/07/2015 17:56
  */
+@Category(FastTests.class)
 public class PasswordMakerTest {
 
     @Test

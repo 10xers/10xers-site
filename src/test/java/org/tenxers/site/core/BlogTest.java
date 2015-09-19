@@ -1,6 +1,7 @@
 package org.tenxers.site.core;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -8,6 +9,7 @@ import org.tenxers.site.Application;
 import org.tenxers.site.core.models.Blog;
 import org.tenxers.site.core.models.Password;
 import org.tenxers.site.core.models.User;
+import testcats.FastTests;
 
 import java.util.Optional;
 
@@ -17,6 +19,7 @@ import static org.junit.Assert.*;
  * site / Ed
  * 26/07/2015 01:41
  */
+@Category(FastTests.class)
 public class BlogTest {
 
     private static final String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ante turpis, sollicitudin cursus ex suscipit sit amet. Donec volutpat consequat sapien, in imperdiet lacus ultricies eget. Mauris id aliquet nisl, in ultricies dui. Duis tristique, ex non lacinia lobortis, odio tellus aliquet nibh, ac cursus ligula mauris non justo. Etiam id hendrerit justo. Curabitur vehicula est at posuere vehicula. Mauris in massa at nibh condimentum efficitur sit amet eget nulla. Aenean nisi erat, congue ut sollicitudin non, rutrum in mi.";

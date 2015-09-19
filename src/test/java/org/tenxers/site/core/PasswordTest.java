@@ -2,7 +2,9 @@ package org.tenxers.site.core;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.tenxers.site.core.models.Password;
+import testcats.FastTests;
 
 import static org.junit.Assert.*;
 
@@ -10,6 +12,7 @@ import static org.junit.Assert.*;
  * site / Ed
  * 26/07/2015 17:37
  */
+@Category(FastTests.class)
 public class PasswordTest {
 
     private Password legit;

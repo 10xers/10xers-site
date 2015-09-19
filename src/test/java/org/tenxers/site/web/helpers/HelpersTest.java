@@ -1,6 +1,7 @@
 package org.tenxers.site.web.helpers;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -10,12 +11,14 @@ import org.tenxers.site.core.PasswordMaker;
 import org.tenxers.site.core.models.Password;
 import org.tenxers.site.core.models.User;
 import org.tenxers.site.core.repositories.UserRepository;
+import testcats.SlowTests;
 
 import javax.servlet.http.HttpSession;
 
 import java.util.Optional;
 
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 import static org.mockito.Mockito.*;
 import static org.tenxers.site.web.helpers.Helpers.addLoginToSession;
 import static org.tenxers.site.web.helpers.Helpers.isLoggedIn;
@@ -26,6 +29,8 @@ import static org.tenxers.site.web.helpers.Helpers.isLoggedIn;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
+@Category(SlowTests.class)
+@Ignore
 public class HelpersTest {
 
     @Autowired
