@@ -41,43 +41,5 @@ public class BlogController {
         return "blog";
     }
 
-    @RequestMapping(value="/blog/admin", method = RequestMethod.GET)
-    public String blogAdmin(HttpSession session, Model model) {
-        if (isLoggedIn(session))
-        {
-            List<Blog> blogs = StreamSupport.stream(blogRepository.findAll().spliterator(), false) // and here
-                    .sorted((e1, e2) -> Long.compare(e2.getId(), e1.getId()) )
-                    .collect(Collectors.toList());
-            model.addAttribute("blogs", blogs);
-            return "adminblog";
-        } else {
-            return "redirect:/login";
-        }
-    }
-
-    @RequestMapping(value="/blog/new", method = RequestMethod.GET)
-    public String blogNew(HttpSession session)
-    {
-        if (isLoggedIn(session))
-        {
-            return "newblog";
-        } else {
-            return "redirect:/login";
-        }
-    }
-
-    @RequestMapping(value="/blog/new", method = RequestMethod.POST)
-    public String blogNewPost(@RequestParam String title, @RequestParam String content, HttpSession session, Model model)
-    {
-        if (isLoggedIn(session))
-        {
-            Blog n = new Blog(title, content, getLoggedInUser(session).get());
-            blogRepository.save(n);
-            return "redirect:/blog/admin";
-        } else {
-            return "redirect:/login";
-        }
-    }
-
 
 }

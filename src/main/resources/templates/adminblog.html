@@ -17,7 +17,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h1>Create a <a href="/blog/new" th:href="@{/blog/new}">new post</a></h1>
+            <h1>Create a <a href="/blog/new" th:href="@{/admin/blog/new}">new post</a></h1>
         </div>
     </div>
   <div class="row">
@@ -33,8 +33,8 @@
               <tbody>
                 <tr th:each="blog : ${blogs}">
                     <td th:text="${blog.title}">Blog subject</td>
-                    <td><a href="/blog/delete/123" th:href="@{/blog/delete/}+${blog.id}">Delete</a></td>
-                    <td><a href="/blog/edit/123" th:href="@{/blog/edit/}+${blog.id}">Edit</a></td>
+                    <td><a href="/blog/delete/123" th:href="@{/admin/blog/delete/}+${blog.id}">Delete</a></td>
+                    <td><a href="/blog/edit/123" th:href="@{/admin/blog/edit/}+${blog.id}">Edit</a></td>
                 </tr>
               </tbody>
           </table>

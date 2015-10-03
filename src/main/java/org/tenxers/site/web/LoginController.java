@@ -39,7 +39,7 @@ public class LoginController {
         if (user.isPresent())
         {
             addLoginToSession(session, user.get());
-            return "redirect:/blog/admin";
+            return "redirect:/admin/blog";
         } else {
             model.addAttribute("loginError", true);
             return "login";
