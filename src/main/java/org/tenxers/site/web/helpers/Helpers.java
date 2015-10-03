@@ -1,5 +1,7 @@
 package org.tenxers.site.web.helpers;
 
+import org.tenxers.site.core.PasswordMaker;
+import org.tenxers.site.core.models.Password;
 import org.tenxers.site.core.models.User;
 import org.tenxers.site.core.repositories.UserRepository;
 
@@ -12,6 +14,20 @@ import java.util.Optional;
  * 06/08/2015 18:33
  */
 public class Helpers {
+
+    public static boolean isPasswordMatch(Password password, String testString)
+    {
+        if (password == null)
+            throw new IllegalArgumentException("Password cannot be null");
+
+        if (testString==null)
+            return false; // non null != null
+
+        Password test = PasswordMaker.make(testString, password.getSalt());
+
+        return password.equals(test);
+    }
+
 
     public static boolean isLoggedIn(HttpSession httpSession)
     {
@@ -40,7 +56,7 @@ public class Helpers {
         if (matches.isEmpty())
             return Optional.empty();
 
-        if(matches.get(0).getPassword().getHash().equals(password))
+        if(isPasswordMatch(matches.get(0).getPassword(), password))
             return Optional.of(matches.get(0));
 
         return Optional.empty();

@@ -88,6 +88,23 @@ public class HelpersTest {
         User u =  new User("edlewis", PasswordMaker.make("abc"), "Ed", "Lewis");
         addLoginToSession(session, u);
         verify(session, times(1)).setAttribute("loggedInUser", u);
+    }
 
+
+    @Test
+    public void testPasswordMatchNullTry() {
+        assertFalse(Helpers.isPasswordMatch(PasswordMaker.make("ABC"), null)); // that's ok
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testPasswordMatchNull() throws Exception {
+        Helpers.isPasswordMatch(null, "123");
+    }
+
+    @Test
+    public void testPasswordsMatch() throws Exception {
+        Password t = PasswordMaker.make("PASSWORD");
+        assertFalse(Helpers.isPasswordMatch(t, "TURTLE"));
+        assertTrue(Helpers.isPasswordMatch(t, "PASSWORD"));
     }
 }

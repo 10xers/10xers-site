@@ -20,6 +20,14 @@ import static org.junit.Assert.*;
 public class PasswordMakerTest {
 
     @Test
+    public void testMakeWithSalt() throws Exception {
+        Password sample = PasswordMaker.make("helloworld");
+        Password check = PasswordMaker.make("helloworld", sample.getSalt());
+        assertEquals(sample, check);
+    }
+
+
+    @Test
     public void testMake() throws Exception {
         Password sample = PasswordMaker.make("plaintext");
         assertNotNull(sample);

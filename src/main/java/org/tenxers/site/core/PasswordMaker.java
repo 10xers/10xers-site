@@ -2,6 +2,7 @@ package org.tenxers.site.core;
 
 import org.tenxers.site.core.models.Password;
 
+import javax.xml.bind.DatatypeConverter;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -22,15 +23,21 @@ public class PasswordMaker {
 
     private static String convertBytesToHex(byte[] bytes)
     {
-        StringBuilder builder = new StringBuilder();
-
-        for (byte b : bytes)
-            builder.append(String.format("%02x", b));
-
-        return builder.toString();
+        return DatatypeConverter.printHexBinary(bytes);
     }
 
-    public static Password make(String plainText) {
+
+    private static byte[] convertHexToBytes(String hex)
+    {
+        return DatatypeConverter.parseHexBinary(hex);
+    }
+
+    public static Password make(String plainText)
+    {
+        return make(plainText, convertBytesToHex(generateRandomSalt()));
+    }
+
+    public static Password make(String plainText, String salt) {
 
         MessageDigest md;
 
@@ -40,11 +47,8 @@ public class PasswordMaker {
             throw new IllegalStateException("cannot get instance of sha-256 digest creator");
         }
 
-        byte[] saltBytes = generateRandomSalt();
-        String salt = convertBytesToHex(saltBytes);
-
         byte plainTextBytes[] = plainText.getBytes(Charset.forName("UTF-8"));
-
+        byte saltBytes[] = convertHexToBytes(salt);
 
         byte digestBytes[] = new byte[plainTextBytes.length + saltBytes.length];
 

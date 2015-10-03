@@ -67,4 +67,25 @@ public class Password {
     public HashType getHashType() {
         return type;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Password password = (Password) o;
+
+        if (!getSalt().equals(password.getSalt())) return false;
+        if (!getHash().equals(password.getHash())) return false;
+        return type == password.type;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getSalt().hashCode();
+        result = 31 * result + getHash().hashCode();
+        result = 31 * result + type.hashCode();
+        return result;
+    }
 }
