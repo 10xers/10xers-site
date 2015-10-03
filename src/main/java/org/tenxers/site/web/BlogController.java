@@ -12,6 +12,7 @@ import org.tenxers.site.core.repositories.BlogRepository;
 import javax.servlet.http.HttpSession;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.StreamHandler;
 import java.util.stream.Collectors;
@@ -31,8 +32,12 @@ public class BlogController {
     BlogRepository blogRepository;
 
     @RequestMapping(value="/blog", method = RequestMethod.GET)
-    public String blog()
+    public String blog(Model model)
     {
+        List<Blog> blogs = StreamSupport.stream(blogRepository.findAll().spliterator(), false) // this is real inefficient
+                .sorted((e1, e2) -> Long.compare(e2.getId(), e1.getId()))
+                .collect(Collectors.toList());
+        model.addAttribute("blogs", blogs);
         return "blog";
     }
 
@@ -40,7 +45,9 @@ public class BlogController {
     public String blogAdmin(HttpSession session, Model model) {
         if (isLoggedIn(session))
         {
-            List<Blog> blogs = StreamSupport.stream(blogRepository.findAll().spliterator(), false).collect(Collectors.toList());
+            List<Blog> blogs = StreamSupport.stream(blogRepository.findAll().spliterator(), false) // and here
+                    .sorted((e1, e2) -> Long.compare(e2.getId(), e1.getId()) )
+                    .collect(Collectors.toList());
             model.addAttribute("blogs", blogs);
             return "adminblog";
         } else {
@@ -66,7 +73,7 @@ public class BlogController {
         {
             Blog n = new Blog(title, content, getLoggedInUser(session).get());
             blogRepository.save(n);
-            return "blog";
+            return "redirect:/blog/admin";
         } else {
             return "redirect:/login";
         }

@@ -15,19 +15,26 @@
 <body>
 
 <div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1>Create a <a href="/blog/new" th:href="@{/blog/new}">new post</a></h1>
+        </div>
+    </div>
   <div class="row">
       <div class="col-md-8 col-md-offset-2">
           <table class="table table-striped">
               <thead>
                 <tr>
-                    <th>Blog title</th>
-                    <th>?</th>
+                    <th>Blog</th>
+                    <th><!--edit--></th>
+                    <th><!--delete--></th>
                 </tr>
               </thead>
               <tbody>
                 <tr th:each="blog : ${blogs}">
-                    <td th:text="${blog.title}">Blog title</td>
-                    <td>?</td>
+                    <td th:text="${blog.title}">Blog subject</td>
+                    <td><a href="/blog/delete/123" th:href="@{/blog/delete/}+${blog.id}">Delete</a></td>
+                    <td><a href="/blog/edit/123" th:href="@{/blog/edit/}+${blog.id}">Edit</a></td>
                 </tr>
               </tbody>
           </table>

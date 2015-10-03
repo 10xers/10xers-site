@@ -16,7 +16,8 @@ public class Blog {
 
     private String title;
     private String text;
-    @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name="author", referencedColumnName="id",nullable=false)
     private User author;
 
