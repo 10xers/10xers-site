@@ -15,12 +15,24 @@
 <body>
 
 <div class="container">
-    <div class="col-md-6">
-        <div class="row">
-
-        </div>
-    </div>
-
+  <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+          <table class="table table-striped">
+              <thead>
+                <tr>
+                    <th>Blog title</th>
+                    <th>?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="blog : ${blogs}">
+                    <td th:text="${blog.title}">Blog title</td>
+                    <td>?</td>
+                </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
 </div>
 
 <script src="/vendor/jquery/jquery-1.11.3.min.js" th:src="@{/vendor/jquery/jquery-1.11.3.min.js}"/>

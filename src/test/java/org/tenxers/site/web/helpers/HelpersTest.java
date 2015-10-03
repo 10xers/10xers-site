@@ -5,6 +5,7 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.tenxers.site.Application;
 import org.tenxers.site.core.PasswordMaker;
@@ -23,6 +24,7 @@ import static org.junit.Assert.*;
 import org.junit.Ignore;
 import static org.mockito.Mockito.*;
 import static org.tenxers.site.web.helpers.Helpers.addLoginToSession;
+import static org.tenxers.site.web.helpers.Helpers.getLoggedInUser;
 import static org.tenxers.site.web.helpers.Helpers.isLoggedIn;
 
 /**
@@ -72,7 +74,7 @@ public class HelpersTest {
             add(permitted);
         }});
 
-        Optional<User> loggedIn = Helpers.tryLogin("edlewis", valid.getHash(), m); // ok
+        Optional<User> loggedIn = Helpers.tryLogin("edlewis", "abc", m); // ok
 
         verify(m, times(1)).findByUsername("edlewis");
 
@@ -88,6 +90,20 @@ public class HelpersTest {
         User u =  new User("edlewis", PasswordMaker.make("abc"), "Ed", "Lewis");
         addLoginToSession(session, u);
         verify(session, times(1)).setAttribute("loggedInUser", u);
+    }
+
+    @Test
+    public void testGetLoggedInUser() throws Exception {
+        HttpSession session = mock(HttpSession.class);
+        Optional<User> none = getLoggedInUser(session);
+        verify(session, times(1)).getAttribute("loggedInUser");
+        assertFalse(none.isPresent());
+
+        User loggedIn = new User("edlewis", PasswordMaker.make("abc"), "Ed", "Lewis");
+        HttpSession okSession = mock(HttpSession.class);
+        when(okSession.getAttribute("loggedInUser")).thenReturn(loggedIn);
+        Optional<User> some = getLoggedInUser(okSession);
+        assertSame(loggedIn, some.get());
     }
 
 

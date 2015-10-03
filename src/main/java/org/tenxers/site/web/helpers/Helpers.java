@@ -67,4 +67,8 @@ public class Helpers {
         session.setAttribute("loggedInUser", u);
     }
 
+    public static Optional<User> getLoggedInUser(HttpSession session) {
+        return Optional.ofNullable((User)session.getAttribute("loggedInUser"));
+    }
+
 }

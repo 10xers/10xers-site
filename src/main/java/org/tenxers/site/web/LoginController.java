@@ -34,7 +34,7 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPost(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
 
-        Optional<User> user = tryLogin(username, password, userRepository); // TODO unstub me
+        Optional<User> user = tryLogin(username, password, userRepository);
 
         if (user.isPresent())
         {
