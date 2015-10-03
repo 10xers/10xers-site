@@ -46,7 +46,7 @@ public class Blog {
         this.text = text;
     }
 
-    private void setTitle(String title) {
+    public void setTitle(String title) {
         if (title==null)
             throw new IllegalArgumentException("title cannot be null");
 

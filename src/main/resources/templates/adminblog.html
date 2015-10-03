@@ -33,8 +33,8 @@
               <tbody>
                 <tr th:each="blog : ${blogs}">
                     <td th:text="${blog.title}">Blog subject</td>
-                    <td><a href="/blog/delete/123" th:href="@{/admin/blog/delete/}+${blog.id}">Delete</a></td>
-                    <td><a href="/blog/edit/123" th:href="@{/admin/blog/edit/}+${blog.id}">Edit</a></td>
+                    <td><a href="/blog/delete/123" th:href="@{/admin/blog/delete/?id=}+${blog.id}">Delete</a></td>
+                    <td><a href="/blog/edit/123" th:href="@{/admin/blog/edit/?id=}+${blog.id}">Edit</a></td>
                 </tr>
               </tbody>
           </table>

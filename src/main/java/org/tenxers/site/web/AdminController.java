@@ -24,45 +24,68 @@ import static org.tenxers.site.web.helpers.Helpers.isLoggedIn;
 @Controller
 public class AdminController {
 
-        @Autowired
-        BlogRepository blogRepository;
+    @Autowired
+    BlogRepository blogRepository;
 
-        @RequestMapping(value="/admin/blog", method = RequestMethod.GET)
-        public String blogAdmin(HttpSession session, Model model) {
-            if (isLoggedIn(session))
-            {
-                List<Blog> blogs = StreamSupport.stream(blogRepository.findAll().spliterator(), false) // and here
-                        .sorted((e1, e2) -> Long.compare(e2.getId(), e1.getId()) )
-                        .collect(Collectors.toList());
-                model.addAttribute("blogs", blogs);
-                return "adminblog";
-            } else {
-                return "redirect:/login";
-            }
+    @RequestMapping(value = "/admin/blog", method = RequestMethod.GET)
+    public String blogAdmin(HttpSession session, Model model) {
+        if (isLoggedIn(session)) {
+            List<Blog> blogs = StreamSupport.stream(blogRepository.findAll().spliterator(), false) // and here
+                    .sorted((e1, e2) -> Long.compare(e2.getId(), e1.getId()))
+                    .collect(Collectors.toList());
+            model.addAttribute("blogs", blogs);
+            return "adminblog";
+        } else {
+            return "redirect:/login";
         }
+    }
 
-        @RequestMapping(value="/admin/blog/new", method = RequestMethod.GET)
-        public String blogNew(HttpSession session)
+    @RequestMapping(value = "/admin/blog/new", method = RequestMethod.GET)
+    public String blogNew(HttpSession session) {
+        if (isLoggedIn(session)) {
+            return "newblog";
+        } else {
+            return "redirect:/login";
+        }
+    }
+
+    @RequestMapping(value = "/admin/blog/new", method = RequestMethod.POST)
+    public String blogNewPost(@RequestParam String title, @RequestParam String content, @RequestParam Long id, HttpSession session, Model model) {
+        if (isLoggedIn(session)) {
+            Blog toEdit;
+            if (id==null) {
+                toEdit = new Blog(title, content, getLoggedInUser(session).get());
+            } else {
+                toEdit = blogRepository.findById(id).get(0);
+                toEdit.setText(content);
+                toEdit.setTitle(title);
+            }
+            blogRepository.save(toEdit);
+            return "redirect:/admin/blog";
+        } else {
+            return "redirect:/login";
+        }
+    }
+
+    @RequestMapping(value = "/admin/blog/delete/")
+    public String blogDeletePost(@RequestParam Long id, HttpSession session) {
+        if (isLoggedIn(session)) {
+            blogRepository.delete(id);
+            return "redirect:/admin/blog"; // erh should do something with this
+        } else {
+            return "redirect:/login";
+        }
+    }
+
+    @RequestMapping(value = "/admin/blog/edit/")
+    public String blogEditPost(@RequestParam Long id, HttpSession session, Model model) {
+        if (isLoggedIn(session))
         {
-            if (isLoggedIn(session))
-            {
-                return "newblog";
-            } else {
-                return "redirect:/login";
-            }
+            model.addAttribute("blog", blogRepository.findById(id).get(0));
+            return "newblog";
+        } else {
+            return "redirect:/login";
         }
-
-        @RequestMapping(value="/admin/blog/new", method = RequestMethod.POST)
-        public String blogNewPost(@RequestParam String title, @RequestParam String content, HttpSession session, Model model)
-        {
-            if (isLoggedIn(session))
-            {
-                Blog n = new Blog(title, content, getLoggedInUser(session).get());
-                blogRepository.save(n);
-                return "redirect:/admin/blog";
-            } else {
-                return "redirect:/login";
-            }
-        }
+    }
 
 }
