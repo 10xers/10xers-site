@@ -31,3 +31,6 @@ site.iml
 .nb-gradle-properties
 
 *~
+
+app.log
+blogdb.mv.db

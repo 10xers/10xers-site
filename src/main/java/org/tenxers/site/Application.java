@@ -23,8 +23,10 @@ public class Application {
     @Bean
     public CommandLineRunner seed(UserRepository repository) {
         return (args) -> {
-            User admin = new User("admin", PasswordMaker.make("wTT6pvKD9S"), "Ed", "Lewis"); // TODO development only!
-            repository.save(admin);
+            if (repository.findByUsername("admin").isEmpty()) {
+                User admin = new User("admin", PasswordMaker.make("wTT6pvKD9S"), "Ed", "Lewis"); // TODO development only!
+                repository.save(admin);
+            }
         };
     }
 
