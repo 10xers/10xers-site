@@ -86,6 +86,11 @@ h3 {
     margin-right: auto;
 }
 
+#article-text {
+    white-space: pre;
+    text-align: left;
+}
+
 /* bootstrap fudges **/
 
 .panel-heading,.panel-body,.panel {
