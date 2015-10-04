@@ -37,7 +37,7 @@ public class SplashPageController {
             model.addAttribute("loggedInPerson", u);
         }
 
-	List<Blog> blogs = StreamSupport.stream(blogRepository.findAll().spliterator(), false)
+	    List<Blog> blogs = StreamSupport.stream(blogRepository.findAll().spliterator(), false)
                 .sorted((e1, e2) -> Long.compare(e2.getId(), e1.getId()))
                 .collect(Collectors.toList());
 	
