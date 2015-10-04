@@ -34,3 +34,4 @@ site.iml
 
 app.log
 blogdb.mv.db
+blogdb.trace.db
