@@ -85,3 +85,9 @@ h3 {
     margin-left: auto;
     margin-right: auto;
 }
+
+/* bootstrap fudges **/
+
+.panel-heading,.panel-body,.panel {
+    border: 0px white;
+}

@@ -1,49 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head>
+  
+  <head>
     <meta charset="utf-8" />
     <title>10xers</title>
     <link href='https://fonts.googleapis.com/css?family=Permanent+Marker|Montserrat' rel='stylesheet' type='text/css' />
     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css' rel='stylesheet' type='text/css' />
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js' ></script>
     <link th:href="@{/styles/main.css}" rel='stylesheet' type='text/css' href="/styles/main.css" />
-</head>
-
-<body>
-
-<div id="topper" class="justifier">
-    <h1><span class="yellow">10x</span>ers</h1>
-    <h2>The guild of badass coders</h2>
-
-    <div id="buttons">
+  </head>
+  
+  <body>
+    
+    <div id="topper" class="justifier">
+      <h1><span class="yellow">10x</span>ers</h1>
+      <h2>The guild of badass coders</h2>
+      
+      <div id="buttons">
         <span class="button">articles</span>
         <span class="button">code</span>
         <span class="button">contact</span>
+      </div>
+      
+      <div id="skyline-dark" class="hidden-sm hidden-xs"></div>
+      <div id="skyline-white" class="hidden-sm hidden-xs"></div>
+      
     </div>
-
-    <div id="skyline-dark" class="hidden-sm hidden-xs"></div>
-    <div id="skyline-white" class="hidden-sm hidden-xs"></div>
-
-</div>
-
-<div id="main-content" class="justifier">
-
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2 th:text="${blog.title}">Blog title</h2>
-                </div>
-                <div class="panel-body" th:text="${blog.text}">
-                    Lorem ipsum ipsum lorem pig potato nom nom
-                </div>
+    
+    <div id="main-content" class="justifier">
+      
+      <div class="row">
+	<div class="col-md-8 col-md-offset-2">
+	  <div class="panel panel-default">
+            <div class="panel-heading">
+              <h2 th:text="${blog.title}">Blog title</h2>
             </div>
-        </div>
+            <div class="panel-body" th:text="${blog.text}"></div>
+	  </div>
+	</div>
+      </div>
+      
     </div>
-
-</div>
-
-</body>
-
+    
+  </body>
+  
 </html>
