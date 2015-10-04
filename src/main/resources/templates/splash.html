@@ -1,27 +1,45 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
+<!DOCTYPE html>
+
+<html lang="en">
+  
+  <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>10xers</title>
+    <link href='https://fonts.googleapis.com/css?family=Permanent+Marker|Montserrat' rel='stylesheet' type='text/css' />
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css' rel='stylesheet' type='text/css' />
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js' ></script>
 
-    <title>Cult of the 9th lantern</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <!-- Bootstrap -->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
-</head>
-<body>
+  </head>
+  
+  <body>
 
-    <div class="jumbotron">
-        <div class="container">
-            <h1 th:if="${ loggedInPerson != null }" th:text="${'Hey ' + loggedInPerson.firstName + ' ' + loggedInPerson.secondName}">(Hey user)</h1>
-            <h1><a th:if="${ loggedInPerson == null }" href="/login">Login</a></h1>
-        </div>
+    <div id="topper" class="justifier">
+      <h1><span class="yellow">10x</span>ers</h1>
+      <h2>The guild of badass coders</h2>
+      
+      <div id="buttons">
+	<span class="button">articles</span>
+	<span class="button">code</span>
+	<span class="button">contact</span>
+      </div>
+      
+      <div id="skyline-dark" class="hidden-sm hidden-xs"></div>
+      <div id="skyline-white" class="hidden-sm hidden-xs"></div>
+      
     </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="/vendor/jquery/jquery-1.11.3.min.js" th:src="@{vendor/jquery/jquery-1.11.3.min.js}" />
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="/vendor/bootstrap/js/bootstrap.min.js" th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"/>
-</body>
+
+    <div id="main-content" class="justifier">
+      <h3>About</h3>
+      <p>
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+	incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+	exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+	irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+	nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+	qui officia deserunt mollit anim id est laborum
+      </p>
+    </div>
+    
+  </body>
+  
 </html>
