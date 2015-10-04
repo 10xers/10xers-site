@@ -29,3 +29,5 @@ site.iml
 
 /.nb-gradle/
 .nb-gradle-properties
+
+*~
