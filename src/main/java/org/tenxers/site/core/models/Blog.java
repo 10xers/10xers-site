@@ -1,6 +1,7 @@
 package org.tenxers.site.core.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Optional;
 
 /**
@@ -14,7 +15,9 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Size(max=100)
     private String title;
+    @Size(max=500000)
     private String text;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)

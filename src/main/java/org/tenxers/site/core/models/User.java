@@ -1,6 +1,7 @@
 package org.tenxers.site.core.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,12 +15,15 @@ public class User {
 
     private static final Pattern lettersOnly = Pattern.compile("^[a-z]+$", Pattern.CASE_INSENSITIVE);
 
+    @Size(max=30)
     private String firstName;
+    @Size(max=30)
     private String secondName;
 
     @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name="password", referencedColumnName="id",nullable=false)
     private Password password;
+    @Size(max=30)
     private String username;
 
     @Id
