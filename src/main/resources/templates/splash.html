@@ -28,13 +28,40 @@
     </div>
 
     <div id="main-content" class="justifier">
+
       <h3>About</h3>
+
       <p>
-        Through deliberate practice, attention to tooling and asking the right questions we believe we become better developers.
+        Through deliberate practice, attention to tooling and asking the right
+	questions we believe we become better developers.
       </p>
+
       <p>
-        We have created 10xers as a place to showcase our journey towards the asymptote of “10x software developers”, and to share the successes and failures we have along the way.
+        We have created 10xers as a place to showcase our journey towards the
+	asymptote of “10x software developers”, and to share the successes and
+	failures we have along the way.
       </p>
+
+      <h3>Code</h3>
+
+      <a href="https://github.com/10xers">See our github here</a>
+
+      <h3>Articles</h3>
+
+      <a href="#"><h4>Do you ever feel like a pastic bag?</h4></a>
+      <a href="#"><h4>Drifting through the wind?</h4></a>
+      <a href="#"><h4>Waiting to start again?</h4></a>
+      <a href="#"><h4>Do you ever feel, feel so paper thin</h4></a>
+      <a href="#"><h4>like a house of cards one blow from caving in</h4></a>
+
+      <div th:each="post : ${posts}">
+	<a href="#"><h4 th:text="${blog.title}"></h4></a>
+      </tr>
+      
+      <h3>Contact us</h3>
+
+      Email us <a href="mailto:10xers@gmail.com">here</a>
+      
     </div>
     
   </body>
