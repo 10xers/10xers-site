@@ -5,10 +5,11 @@
     <meta charset="utf-8"/>
     <title>10xers</title>
     <link href='https://fonts.googleapis.com/css?family=Permanent+Marker|Montserrat' rel='stylesheet' type='text/css'/>
-    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css' rel='stylesheet'
-          type='text/css'/>
+    <script src="/vendor/jquery/jquery-1.11.3.min.js" th:src="@{/vendor/jquery/jquery-1.11.3.min.js}"/>
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css' rel='stylesheet' type='text/css'/>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
     <link th:href="@{/styles/main.css}" rel='stylesheet' type='text/css' href="/styles/main.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
 </head>
 
 <body>
@@ -18,11 +19,13 @@
 
     <h2>The guild of badass coders</h2>
 
+    <!-- do later
     <div id="buttons">
         <span class="button">articles</span>
         <span class="button">code</span>
         <span class="button">contact</span>
     </div>
+    -->
 
     <div id="skyline-dark" class="hidden-sm hidden-xs"></div>
     <div id="skyline-white" class="hidden-sm hidden-xs"></div>
@@ -34,48 +37,45 @@
     <h3>About</h3>
 
     <p>
-        Through deliberate practice, attention to tooling and asking the right
-        questions, we believe we become better developers.
-    </p>
-
-    <p>
-        We have created 10xers as a place to showcase our journey towards the
-        asymptote of “10x software developers” and to share the successes and
-        failures we have along the way.
+      10xers is a platform to showcase our code and ideas towards making all of us better developers.
     </p>
 
     <h3>Code</h3>
 
     <p>
-        <span style="margin-right: 10px;">
-            <a href="https://github.com/matthewjwalls"><img src="/img/GitHub-Mark-32px.png"
-                                                            th:src="@{/img/GitHub-Mark-32px.png}" class="gh-image"/>Matthew Walls</a>
+
+      <a href="https://github.com/matthewjwalls">
+        <span class="button">
+            <i class="fa fa-github"></i> Matthew Walls
         </span>
-        <span style="margin-left: 10px;">
-            <a href="https://github.com/ninjabear"><img src="/img/GitHub-Mark-32px.png"
-                                                        th:src="@{/img/GitHub-Mark-32px.png}" class="gh-image"/>Ed Lewis</a>
+      </a>
+      
+      <a href="https://github.com/ninjabear">
+        <span class="button">
+            <i class="fa fa-github"></i> Ed Lewis
         </span>
+      </a>
+        
     </p>
 
     <p>
         Or see what we're working on together at <a href="https://github.com/10xers">the 10xers github</a>
     </p>
 
+    <!--
     <h3>Articles</h3>
 
     <div th:each="post : ${posts}">
         <a th:href="@{'/blog/'+${post.id}}"><h4 th:text="${post.title}"></h4></a>
     </div>
+    -->
 
     <h3>Contact us</h3>
 
-    Email us <a href="mailto:10xers@gmail.com">here</a>
+    Email us <a href="mailto:info@10xers.net">here</a>
 
 </div>
 
-<script src="/vendor/jquery/jquery-1.11.3.min.js" th:src="@{/vendor/jquery/jquery-1.11.3.min.js}"/>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="/vendor/bootstrap/js/bootstrap.min.js" th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"/>
 </body>
 
 </html>

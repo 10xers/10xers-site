@@ -5,6 +5,7 @@ html,body {
 
 body {
     font-family: 'Montserrat', sans-serif;
+    margin-bottom: 30px;
 }
 
 h1,h2,h3 {
@@ -20,14 +21,16 @@ h1 {
 
 h2 {
     font-size: 2.5em;
-      margin-bottom: 20px;
+    margin-bottom: 20px;
+    z-index: 1;
+    position: relative;
 }
 
 h3 {
     color: #3f374e;
     font-size: 2em;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 60px;
 }
 
 .justifier {
@@ -49,16 +52,42 @@ h3 {
 }
 
 #topper > #buttons > .button {
-    border-radius: 30px;
     font-size: 1.3em;
     background-color: #6a5e80;
-    display: inline-block;
-    padding: 10px;
     margin-left: 25px;
     margin-right: 25px;
     min-width: 100px;
-    position: relative;
+}
+
+#main-content .button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.button {
+    padding: 12px;
+    border-radius: 40px;
+    background-color: #3f374e;
+    min-width: 185px;
+    display: inline-block;
+    color: white;
     z-index: 1;
+    position: relative;
+}
+
+.button:hover {
+    background-color: #B1A7C3;
+}
+
+#main-content .button a {
+    color: white;
+}
+
+#main-content .button i {
+    color: white;
+    vertical-align: middle;
+    font-size: 2em;
+    margin-right: 3px;
 }
 
 #skyline-white {
@@ -100,5 +129,7 @@ h3 {
 
 .panel-heading,.panel-body,.panel {
     border: 0px white;
+    background-color: white !important; /* forgive me */
+    word-wrap: break-word;
 }
 
