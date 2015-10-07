@@ -97,6 +97,7 @@ h3 {
     height: 250px;
     bottom: 0px;
     position: absolute;
+    background-position: 0px -1px;
 }
 
 #skyline-dark {
@@ -107,6 +108,7 @@ h3 {
     bottom: 0px;
     position: absolute;
     opacity: 0.3;
+    background-position: 0px -1px;
 }
 
 #main-content > p {
